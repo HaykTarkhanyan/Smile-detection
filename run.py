@@ -14,8 +14,6 @@ threshold = 0.5
 emoj = cv2.imread("emoji.png")
 emoj = cv2.resize(emoj, (150, 150))
 
-print(emoj.shape)
-
 # load json and create model
 json_file = open('model_l2_0,01.json', 'r')
 loaded_model_json = json_file.read()
@@ -71,6 +69,7 @@ while 1:
                 # pred = 0.6
                 print(pred)
                 if pred > threshold:
+                    cv2.imwrite('smile.png', frame_to_display)
                     frame_to_display[:emoj.shape[0], :emoj.shape[1]] = emoj
 
                 # print('eyes!!!')
