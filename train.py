@@ -10,20 +10,11 @@ from keras.layers import Flatten
 from keras.layers import Dense
 from keras.preprocessing.image import ImageDataGenerator
 
+from helpers import process_input
+
 EPOCHS = 3
 
 
-def process_input(direc, photo=None):
-    if photo is None:
-        test_im = cv2.imread(direc)
-    else:
-        test_im = photo
-    # gray = cv2.cvtColor(test_im, cv2.COLOR_BGR2GRAY)
-    # gray = cv2.resize(gray, (64, 64))
-    gray = test_im
-    gray = np.expand_dims(gray, axis=2)
-    gray = np.expand_dims(gray, axis=0)
-    return gray
 
 
 # plt.imshow(one_0.flatten().reshape(64, 64), cmap='gray')

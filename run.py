@@ -1,3 +1,4 @@
+import os
 import cv2
 from model import load_model
 from helpers import process_input
@@ -67,8 +68,8 @@ while not done:
                     process_input('ban', frame_cropped))
                 print(pred)
                 if pred > THRESHOLD:
-                    cv2.imwrite(f'smile_{randint(1,10)}.png', frame_to_display)
-                    frame_to_display[:emoj.shape[0], :emoj.shape[1]] = emoj
+                    cv2.imwrite(os.path.join("smiley images", f'smile_{randint(1,10)}.png'), frame_to_display)
+                    frame_to_display[:emoji.shape[0], :emoji.shape[1]] = emoji
 
 
             cv2.imwrite("cropped_face.png", frame_cropped)

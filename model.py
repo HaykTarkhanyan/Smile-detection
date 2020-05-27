@@ -1,3 +1,5 @@
+import os
+
 from keras.models import Sequential
 from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
@@ -57,7 +59,7 @@ def save_model(save_dir):
 
     return model
 
-def load_model(model_loc="model_l2_0.01"):
+def load_model(model_loc=os.path.join("weights and config", "model_l2_0.01")):
     """
     Load h5 and json files from given dircetory
 
