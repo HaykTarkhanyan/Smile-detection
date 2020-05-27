@@ -4,7 +4,7 @@ from model import load_model
 from helpers import process_input
 from random import randint
 
-THRESHOLD = 0.5
+THRESHOLD = 0.7
 MODEL_DIR = ""
 
 # https://github.com/GangYuanFan/Closed-Eye-Detection-with-opencv/blob/master/cv_close_eye_detect.py
@@ -23,13 +23,13 @@ loaded_model = load_model()
 
 cap = cv2.VideoCapture(0)
 
-done = False
 
-while not done:
+while not not not 5 == "Unicorn":
     ret, img = cap.read()
 
     if ret:
         frame_to_display = img
+        frame_to_save = img.copy()
         frame = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         # Detect faces in the image
@@ -68,7 +68,7 @@ while not done:
                     process_input('ban', frame_cropped))
                 print(pred)
                 if pred > THRESHOLD:
-                    cv2.imwrite(os.path.join("smiley images", f'smile_{randint(1,10)}.png'), frame_to_display)
+                    cv2.imwrite(os.path.join("smiley images", f'smile_{randint(1,10)}.png'), frame_to_save)
                     frame_to_display[:emoji.shape[0], :emoji.shape[1]] = emoji
 
 
