@@ -1,15 +1,10 @@
-import keras
-from keras.models import Sequential
-from keras.layers import Conv2D
-from keras.layers import MaxPooling2D
-from keras.layers import Flatten
-from keras.layers import Dense
-from keras.preprocessing.image import ImageDataGenerator
-import matplotlib.pyplot as plt
 import cv2
 import numpy as np
-from sklearn.metrics import classification_report, confusion_matrix
-from keras.regularizers import l2
+import matplotlib.pyplot as plt
+
+import keras
+from keras.preprocessing.image import ImageDataGenerator
+
 from model import le_net_modified, save_model
 
 
@@ -47,13 +42,14 @@ validation_generator = train_datagen.flow_from_directory(
 model = le_net_modified(LAMBD)
 
 print (model.summary())
+
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 history = model.fit_generator(
                     train_generator,
-                    steps_per_epoch = train_generator.samples // batch_size,
+                    steps_per_epoch = train_generator.samples // BATCH_SIZE,
                     validation_data = validation_generator,
-                    validation_steps = validation_generator.samples // batch_size,
+                    validation_steps = validation_generator.samples // BATCH_SIZE,
                     epochs = EPOCHS
                     )
 
@@ -68,26 +64,6 @@ history = model.fit_generator(
 
 
 # serialize model to JSON
-model_json = model.to_json()
-with open(f"/content/drive/My Drive/Smile_dataset/smile/ep_{EPOCHS} l2_{lambd}.json", "w") as json_file:
-    json_file.write(model_json)
-# serialize weights to HDF5
-model.save_weights(f"/content/drive/My Drive/Smile_dataset/smile/ep_{EPOCHS} l2_{lambd}.h5")
-print("Saved model to disk")
+save_model()
 
 
-
-# # later...
-
-# # load json and create model
-# json_file = open('model.json', 'r')
-# loaded_model_json = json_file.read()
-# json_file.close()
-# loaded_model = model_from_json(loaded_model_json)
-# # load weights into new model
-# loaded_model.load_weights("/content/drive/My Drive/Smile_dataset/smile/model.h5")
-# print("Loaded model from disk")
-
-
-# , zero_0, zero_1])
-# print (y_pred)
