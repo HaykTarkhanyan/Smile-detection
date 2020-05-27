@@ -2,6 +2,8 @@ import os
 import cv2
 import re
 
+# Written only for my usage therefore hardcoded
+
 ims = os.listdir(
     "/content/drive/My Drive/Smile_dataset/smile/lfwcrop_grey/faces")
 

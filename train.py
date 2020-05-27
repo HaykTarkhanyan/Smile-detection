@@ -18,8 +18,9 @@ def process_input(direc, photo=None):
         test_im = cv2.imread(direc)
     else:
         test_im = photo
-    gray = cv2.cvtColor(test_im, cv2.COLOR_BGR2GRAY)
-    gray = cv2.resize(gray, (64, 64))
+    # gray = cv2.cvtColor(test_im, cv2.COLOR_BGR2GRAY)
+    # gray = cv2.resize(gray, (64, 64))
+    gray = test_im
     gray = np.expand_dims(gray, axis=2)
     gray = np.expand_dims(gray, axis=0)
     return gray
