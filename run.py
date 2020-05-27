@@ -9,8 +9,10 @@ THRESHOLD = 0.7
 MODEL_DIR = ""
 
 # https://github.com/GangYuanFan/Closed-Eye-Detection-with-opencv/blob/master/cv_close_eye_detect.py
-eye_cascPath = r"C:/Users/Hayk/Desktop/haarcascade_eye_tree_eyeglasses.xml"
-face_cascPath = r"C:/Users/Hayk/Desktop/haarcascade_frontalface_default.xml"
+eye_cascPath = os.path.join(
+    "face_detection", "haarcascade_eye_tree_eyeglasses.xml")
+face_cascPath = os.path.join(
+    "face_detection", "haarcascade_frontalface_default.xml")
 
 faceCascade = cv2.CascadeClassifier(face_cascPath)
 eyeCascade = cv2.CascadeClassifier(eye_cascPath)
