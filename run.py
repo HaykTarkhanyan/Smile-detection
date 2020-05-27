@@ -8,8 +8,8 @@ THRESHOLD = 0.7
 MODEL_DIR = ""
 
 # https://github.com/GangYuanFan/Closed-Eye-Detection-with-opencv/blob/master/cv_close_eye_detect.py
-eye_cascPath = r"C:/Users/Hayk/Desktop/haarcascade_eye_tree_eyeglasses.xml"
-face_cascPath = r"C:/Users/Hayk/Desktop/haarcascade_frontalface_default.xml"
+eye_cascPath = os.path.join("face_detection", haarcascade_eye_tree_eyeglasses.xml")
+face_cascPath = os.path.join("face_detection", haarcascade_frontalface_default.xml")
 
 faceCascade = cv2.CascadeClassifier(face_cascPath)
 eyeCascade = cv2.CascadeClassifier(eye_cascPath)
@@ -65,8 +65,7 @@ while not not not 5 == "Unicorn":
                 print("Open your eyes. I don't know how are you gonna read this with closed eyes, though")
             else:
                 pred = loaded_model.predict(
-                    process_input('ban', frame_cropped))
-                print(pred)
+                    process_input('ban', frame_cropped)
                 if pred > THRESHOLD:
                     cv2.imwrite(os.path.join("smiley images", f'smile_{randint(1,10)}.png'), frame_to_save)
                     frame_to_display[:emoji.shape[0], :emoji.shape[1]] = emoji
