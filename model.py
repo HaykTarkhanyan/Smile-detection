@@ -11,44 +11,48 @@ from keras.models import model_from_json
 
 
 def le_net_modified(LAMBD):
-        model = Sequential()
+    model = Sequential()
 
-        model.add(Conv2D(filters = 6,
-                         kernel_size = 5,
-                         strides = 1,
-                         activation = 'relu',
-                         input_shape = (64,64,1),
-                         kernel_regularizer=l2(LAMBD),
-                         bias_regularizer=l2(LAMBD)))
+    model.add(Conv2D(filters = 6,
+                     kernel_size = 5,
+                     strides = 1,
+                     activation = 'relu',
+                     input_shape = (64,64,1),
+                     kernel_regularizer=l2(LAMBD),
+                     bias_regularizer=l2(LAMBD)))
 
-        model.add(MaxPooling2D(pool_size = 2, strides = 2, ))
+    model.add(MaxPooling2D(pool_size = 2, strides = 2, ))
 
-        model.add(Conv2D(filters = 16,
-                         kernel_size = 5,
-                         kernel_regularizer=l2(LAMBD),
-                         bias_regularizer=l2(LAMBD),
-                         strides = 1,
-                         activation = 'relu'))
+    model.add(Conv2D(filters = 16,
+                     kernel_size = 5,
+                     kernel_regularizer=l2(LAMBD),
+                     bias_regularizer=l2(LAMBD),
+                     strides = 1,
+                     activation = 'relu'))
 
 
-        model.add(MaxPooling2D(pool_size = 2, strides = 2))
+    model.add(MaxPooling2D(pool_size = 2, strides = 2))
 
-        model.add(Flatten())
-        model.add(Dense(units = 120,
-                        activation = 'relu',
-                        kernel_regularizer=l2(LAMBD),
-                        bias_regularizer=l2(LAMBD)))
+    model.add(Flatten())
+    model.add(Dense(units = 120,
+                    activation = 'relu',
+                    kernel_regularizer=l2(LAMBD),
+                    bias_regularizer=l2(LAMBD)))
 
-        model.add(Dense(units = 84,
-                        activation = 'relu',
-                        kernel_regularizer=l2(LAMBD),
-                        bias_regularizer=l2(LAMBD)))
+    model.add(Dense(units = 84,
+                    activation = 'relu',
+                    kernel_regularizer=l2(LAMBD),
+                    bias_regularizer=l2(LAMBD)))
 
-        model.add(Dense(units = 1, activation = 'sigmoid'))
+    model.add(Dense(units = 1, activation = 'sigmoid'))
 
-        return model
+    return model
 
 def save_model(save_dir):
+    """
+    Hardcoded values since you won't be able to train the model at first place
+    because data isn't presenr
+    """
     # serialize model to JSON
     model_json = model.to_json()
     with open(f"/content/drive/My Drive/Smile_dataset/smile/ep_{EPOCHS} l2_{lambd}.json", "w") as json_file:
@@ -59,7 +63,7 @@ def save_model(save_dir):
 
     return model
 
-def load_model(model_loc=os.path.join("weights and config", "model_l2_0.01")):
+def load_model(model_loc=os.path.join("weights and config", "ep_18 l2_0.015 batch_16")):
     """
     Load h5 and json files from given dircetory
 
