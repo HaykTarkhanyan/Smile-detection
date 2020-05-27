@@ -5,5 +5,14 @@ Written as a task for intern position on 25-27.05.2020
 
 I highly encourage you to check process.md for techniqal details
 
+Data - https://drive.google.com/open?id=1OHMlc-7sgBvbPrW35rCWEfLwPrTbGUPF
+
+
 **Usage**
+
+after cloning and installing dependences simply run (There is no argparser)
+
+python run.py
+
+
 
